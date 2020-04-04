@@ -14,3 +14,13 @@ message AddVisitorRequest{
 message AddVisitorReply{
     bool ok = 1;
 }
+
+message ListVisitorCountRequest{
+    string id = 1;//唯一id
+    int64 unixnano = 2;//现在的时间
+    repeated int64 span = 3;//哪些时间范围
+}
+
+message ListVisitorCountReply{
+    map<int64,int64> counts = 1;
+}

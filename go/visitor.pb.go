@@ -31,7 +31,7 @@ func (m *AddVisitorRequest) Reset()         { *m = AddVisitorRequest{} }
 func (m *AddVisitorRequest) String() string { return proto.CompactTextString(m) }
 func (*AddVisitorRequest) ProtoMessage()    {}
 func (*AddVisitorRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_visitor_bb4d44ebd14d5876, []int{0}
+	return fileDescriptor_visitor_55918d9f6edc53fc, []int{0}
 }
 func (m *AddVisitorRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AddVisitorRequest.Unmarshal(m, b)
@@ -76,7 +76,7 @@ func (m *AddVisitorReply) Reset()         { *m = AddVisitorReply{} }
 func (m *AddVisitorReply) String() string { return proto.CompactTextString(m) }
 func (*AddVisitorReply) ProtoMessage()    {}
 func (*AddVisitorReply) Descriptor() ([]byte, []int) {
-	return fileDescriptor_visitor_bb4d44ebd14d5876, []int{1}
+	return fileDescriptor_visitor_55918d9f6edc53fc, []int{1}
 }
 func (m *AddVisitorReply) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_AddVisitorReply.Unmarshal(m, b)
@@ -103,9 +103,104 @@ func (m *AddVisitorReply) GetOk() bool {
 	return false
 }
 
+type ListVisitorCountRequest struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Unixnano             int64    `protobuf:"varint,2,opt,name=unixnano,proto3" json:"unixnano,omitempty"`
+	Span                 []int64  `protobuf:"varint,3,rep,packed,name=span,proto3" json:"span,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *ListVisitorCountRequest) Reset()         { *m = ListVisitorCountRequest{} }
+func (m *ListVisitorCountRequest) String() string { return proto.CompactTextString(m) }
+func (*ListVisitorCountRequest) ProtoMessage()    {}
+func (*ListVisitorCountRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_visitor_55918d9f6edc53fc, []int{2}
+}
+func (m *ListVisitorCountRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListVisitorCountRequest.Unmarshal(m, b)
+}
+func (m *ListVisitorCountRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListVisitorCountRequest.Marshal(b, m, deterministic)
+}
+func (dst *ListVisitorCountRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListVisitorCountRequest.Merge(dst, src)
+}
+func (m *ListVisitorCountRequest) XXX_Size() int {
+	return xxx_messageInfo_ListVisitorCountRequest.Size(m)
+}
+func (m *ListVisitorCountRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListVisitorCountRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListVisitorCountRequest proto.InternalMessageInfo
+
+func (m *ListVisitorCountRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *ListVisitorCountRequest) GetUnixnano() int64 {
+	if m != nil {
+		return m.Unixnano
+	}
+	return 0
+}
+
+func (m *ListVisitorCountRequest) GetSpan() []int64 {
+	if m != nil {
+		return m.Span
+	}
+	return nil
+}
+
+type ListVisitorCountReply struct {
+	Counts               map[int64]int64 `protobuf:"bytes,1,rep,name=counts,proto3" json:"counts,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *ListVisitorCountReply) Reset()         { *m = ListVisitorCountReply{} }
+func (m *ListVisitorCountReply) String() string { return proto.CompactTextString(m) }
+func (*ListVisitorCountReply) ProtoMessage()    {}
+func (*ListVisitorCountReply) Descriptor() ([]byte, []int) {
+	return fileDescriptor_visitor_55918d9f6edc53fc, []int{3}
+}
+func (m *ListVisitorCountReply) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ListVisitorCountReply.Unmarshal(m, b)
+}
+func (m *ListVisitorCountReply) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ListVisitorCountReply.Marshal(b, m, deterministic)
+}
+func (dst *ListVisitorCountReply) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ListVisitorCountReply.Merge(dst, src)
+}
+func (m *ListVisitorCountReply) XXX_Size() int {
+	return xxx_messageInfo_ListVisitorCountReply.Size(m)
+}
+func (m *ListVisitorCountReply) XXX_DiscardUnknown() {
+	xxx_messageInfo_ListVisitorCountReply.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ListVisitorCountReply proto.InternalMessageInfo
+
+func (m *ListVisitorCountReply) GetCounts() map[int64]int64 {
+	if m != nil {
+		return m.Counts
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*AddVisitorRequest)(nil), "visitorpb.AddVisitorRequest")
 	proto.RegisterType((*AddVisitorReply)(nil), "visitorpb.AddVisitorReply")
+	proto.RegisterType((*ListVisitorCountRequest)(nil), "visitorpb.ListVisitorCountRequest")
+	proto.RegisterType((*ListVisitorCountReply)(nil), "visitorpb.ListVisitorCountReply")
+	proto.RegisterMapType((map[int64]int64)(nil), "visitorpb.ListVisitorCountReply.CountsEntry")
 }
 func NewPopulatedAddVisitorRequest(r randyVisitor, easy bool) *AddVisitorRequest {
 	this := &AddVisitorRequest{}
@@ -123,6 +218,46 @@ func NewPopulatedAddVisitorRequest(r randyVisitor, easy bool) *AddVisitorRequest
 func NewPopulatedAddVisitorReply(r randyVisitor, easy bool) *AddVisitorReply {
 	this := &AddVisitorReply{}
 	this.Ok = bool(bool(r.Intn(2) == 0))
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedVisitor(r, 2)
+	}
+	return this
+}
+
+func NewPopulatedListVisitorCountRequest(r randyVisitor, easy bool) *ListVisitorCountRequest {
+	this := &ListVisitorCountRequest{}
+	this.Id = string(randStringVisitor(r))
+	this.Unixnano = int64(r.Int63())
+	if r.Intn(2) == 0 {
+		this.Unixnano *= -1
+	}
+	v1 := r.Intn(10)
+	this.Span = make([]int64, v1)
+	for i := 0; i < v1; i++ {
+		this.Span[i] = int64(r.Int63())
+		if r.Intn(2) == 0 {
+			this.Span[i] *= -1
+		}
+	}
+	if !easy && r.Intn(10) != 0 {
+		this.XXX_unrecognized = randUnrecognizedVisitor(r, 4)
+	}
+	return this
+}
+
+func NewPopulatedListVisitorCountReply(r randyVisitor, easy bool) *ListVisitorCountReply {
+	this := &ListVisitorCountReply{}
+	if r.Intn(10) != 0 {
+		v2 := r.Intn(10)
+		this.Counts = make(map[int64]int64)
+		for i := 0; i < v2; i++ {
+			v3 := int64(r.Int63())
+			this.Counts[v3] = int64(r.Int63())
+			if r.Intn(2) == 0 {
+				this.Counts[v3] *= -1
+			}
+		}
+	}
 	if !easy && r.Intn(10) != 0 {
 		this.XXX_unrecognized = randUnrecognizedVisitor(r, 2)
 	}
@@ -148,9 +283,9 @@ func randUTF8RuneVisitor(r randyVisitor) rune {
 	return rune(ru + 61)
 }
 func randStringVisitor(r randyVisitor) string {
-	v1 := r.Intn(100)
-	tmps := make([]rune, v1)
-	for i := 0; i < v1; i++ {
+	v4 := r.Intn(100)
+	tmps := make([]rune, v4)
+	for i := 0; i < v4; i++ {
 		tmps[i] = randUTF8RuneVisitor(r)
 	}
 	return string(tmps)
@@ -172,11 +307,11 @@ func randFieldVisitor(dAtA []byte, r randyVisitor, fieldNumber int, wire int) []
 	switch wire {
 	case 0:
 		dAtA = encodeVarintPopulateVisitor(dAtA, uint64(key))
-		v2 := r.Int63()
+		v5 := r.Int63()
 		if r.Intn(2) == 0 {
-			v2 *= -1
+			v5 *= -1
 		}
-		dAtA = encodeVarintPopulateVisitor(dAtA, uint64(v2))
+		dAtA = encodeVarintPopulateVisitor(dAtA, uint64(v5))
 	case 1:
 		dAtA = encodeVarintPopulateVisitor(dAtA, uint64(key))
 		dAtA = append(dAtA, byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)), byte(r.Intn(256)))
@@ -202,19 +337,26 @@ func encodeVarintPopulateVisitor(dAtA []byte, v uint64) []byte {
 	return dAtA
 }
 
-func init() { proto.RegisterFile("visitor.proto", fileDescriptor_visitor_bb4d44ebd14d5876) }
+func init() { proto.RegisterFile("visitor.proto", fileDescriptor_visitor_55918d9f6edc53fc) }
 
-var fileDescriptor_visitor_bb4d44ebd14d5876 = []byte{
-	// 164 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2d, 0xcb, 0x2c, 0xce,
-	0x2c, 0xc9, 0x2f, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0xe2, 0x84, 0x72, 0x0b, 0x92, 0xa4,
-	0x74, 0xd3, 0x33, 0x4b, 0x32, 0x4a, 0x93, 0xf4, 0x92, 0xf3, 0x73, 0xf5, 0xd3, 0xf3, 0xd3, 0xf3,
-	0xf5, 0xc1, 0x2a, 0x92, 0x4a, 0xd3, 0xc0, 0x3c, 0x30, 0x07, 0xcc, 0x82, 0xe8, 0x54, 0xb2, 0xe7,
-	0x12, 0x74, 0x4c, 0x49, 0x09, 0x83, 0x68, 0x0f, 0x4a, 0x2d, 0x2c, 0x4d, 0x2d, 0x2e, 0x11, 0xe2,
-	0xe3, 0x62, 0xca, 0x4c, 0x91, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0c, 0x62, 0xca, 0x4c, 0x11, 0x92,
-	0xe2, 0xe2, 0x28, 0xcd, 0xcb, 0xac, 0xc8, 0x4b, 0xcc, 0xcb, 0x97, 0x60, 0x52, 0x60, 0xd4, 0x60,
-	0x0e, 0x82, 0xf3, 0x95, 0x14, 0xb9, 0xf8, 0x91, 0x0d, 0x28, 0xc8, 0xa9, 0x04, 0x69, 0xcf, 0xcf,
-	0x06, 0x6b, 0xe7, 0x08, 0x62, 0xca, 0xcf, 0x76, 0xe2, 0xff, 0xf1, 0x50, 0x8e, 0x31, 0x0a, 0xe1,
-	0xc6, 0x24, 0x36, 0xb0, 0xdd, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x0e, 0xc2, 0x7a, 0x91,
-	0xc6, 0x00, 0x00, 0x00,
+var fileDescriptor_visitor_55918d9f6edc53fc = []byte{
+	// 277 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x91, 0xbf, 0x4e, 0xc3, 0x30,
+	0x10, 0xc6, 0xe5, 0x18, 0xaa, 0xf6, 0x2a, 0x28, 0x58, 0x20, 0xa2, 0x0c, 0x28, 0x64, 0xca, 0x00,
+	0xae, 0x04, 0x0b, 0xb0, 0x20, 0xfe, 0x6d, 0x4c, 0x1e, 0x90, 0x60, 0x4b, 0x9a, 0x10, 0xac, 0x14,
+	0x5f, 0x88, 0xed, 0x8a, 0xbc, 0x09, 0xaf, 0xc7, 0x5b, 0x30, 0xa2, 0x38, 0x51, 0xa9, 0x04, 0x53,
+	0xb7, 0xef, 0x17, 0xdd, 0xef, 0xf2, 0xe9, 0x0c, 0x5b, 0x0b, 0xa9, 0xa5, 0xc1, 0x9a, 0x57, 0x35,
+	0x1a, 0x64, 0xa3, 0x1e, 0xab, 0x34, 0x38, 0x29, 0xa4, 0x79, 0xb5, 0x29, 0x9f, 0xe1, 0xdb, 0xb4,
+	0xc0, 0x02, 0xa7, 0x6e, 0x22, 0xb5, 0x2f, 0x8e, 0x1c, 0xb8, 0xd4, 0x99, 0xd1, 0x15, 0xec, 0x5e,
+	0x67, 0xd9, 0x63, 0xa7, 0x8b, 0xfc, 0xdd, 0xe6, 0xda, 0xb0, 0x6d, 0xf0, 0x64, 0xe6, 0x93, 0x90,
+	0xc4, 0x23, 0xe1, 0xc9, 0x8c, 0x05, 0x30, 0xb4, 0x4a, 0x7e, 0xa8, 0x44, 0xa1, 0xef, 0x85, 0x24,
+	0xa6, 0x62, 0xc9, 0xd1, 0x11, 0x4c, 0x56, 0x17, 0x54, 0xf3, 0xa6, 0xd5, 0xb1, 0x74, 0xfa, 0x50,
+	0x78, 0x58, 0x46, 0x4f, 0x70, 0xf0, 0x20, 0xb5, 0xe9, 0x67, 0x6e, 0xd1, 0x2a, 0xb3, 0xc6, 0x9f,
+	0x18, 0x83, 0x0d, 0x5d, 0x25, 0xca, 0xa7, 0x21, 0x8d, 0xa9, 0x70, 0x39, 0xfa, 0x24, 0xb0, 0xff,
+	0x77, 0x77, 0x5b, 0xe2, 0x0e, 0x06, 0xb3, 0x96, 0xb4, 0x4f, 0x42, 0x1a, 0x8f, 0x4f, 0x8f, 0xf9,
+	0xf2, 0x46, 0xfc, 0x5f, 0x83, 0xbb, 0xa8, 0xef, 0x95, 0xa9, 0x1b, 0xd1, 0xbb, 0xc1, 0x05, 0x8c,
+	0x57, 0x3e, 0xb3, 0x1d, 0xa0, 0x65, 0xde, 0xb8, 0xbe, 0x54, 0xb4, 0x91, 0xed, 0xc1, 0xe6, 0x22,
+	0x99, 0xdb, 0xbc, 0x6f, 0xdb, 0xc1, 0xa5, 0x77, 0x4e, 0x6e, 0x26, 0xdf, 0x5f, 0x87, 0xe4, 0xf9,
+	0xf7, 0x65, 0xd2, 0x81, 0xbb, 0xf8, 0xd9, 0x4f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x0a, 0xc5, 0xd1,
+	0xc2, 0xbc, 0x01, 0x00, 0x00,
 }

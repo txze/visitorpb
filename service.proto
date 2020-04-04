@@ -8,4 +8,5 @@ import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 import "visitor.proto";
 service visitor{
     rpc AddVisitor (AddVisitorRequest) returns (AddVisitorReply);
+    rpc ListVisitorCount (ListVisitorCountRequest) returns (ListVisitorCountReply);
 }

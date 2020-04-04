@@ -10,10 +10,12 @@ gogo:
 	protoc \
 	-I. \
 	-I ${GOPATH}/src \
-	--gogo_out=plugins=grpc:. *.proto
+	--gogo_out=plugins=grpc:./go *.proto
 
 go:
 	protoc \
 	-I. \
 	-I ${GOPATH}/src \
-	--go_out=plugins=grpc:. *.proto
+	--go_out=plugins=grpc:./go *.proto
+
+node:
